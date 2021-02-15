@@ -78,19 +78,19 @@ public class BoardController {
 		/*
 		 * 카테고리와 관련된 게시물을 보여주는데 페이지가 정해지지않아 첫페이지를 호출해 보여준다.
 		 */
-		syslog.getLog("->boardList/cat/"+category_id);
+		//syslog.getLog("->boardList/cat/"+category_id);
 		return getListByCategory(category_id, 1, session, model);
 	}
 	
 	@RequestMapping("/board/{board_id}/{page}")	
 	public String getBoardDetails(@PathVariable int board_id, @PathVariable int page, Model model) {
-		syslog.getLog("1");
+		//syslog.getLog("1");
 		//게시물의 정보를 가져오며 뷰어에서 출력할 수 있도록 request정보 입력
 		Board board = boardService.selectArticle(board_id);
 		model.addAttribute("board", board);
 		model.addAttribute("page", page);
 		model.addAttribute("category_id", board.getCategory_id());
-		syslog.getLog("와 아빠다"+board.getReply_parents_number());
+	//	syslog.getLog("와 아빠다"+board.getReply_parents_number());
 		//logger.info("getBoardDetails " + board.toString());
 		return "boardView/boardView";
 	}
@@ -98,7 +98,7 @@ public class BoardController {
 	@RequestMapping("/board/{board_id}")
 	public String getBoardDetails(@PathVariable int board_id, Model model) {
 		//게시물 정보를 불러오며 디폴트 페이지 1값 입력
-		syslog.getLog("1");
+	//	syslog.getLog("1");
 		return getBoardDetails(board_id, 1, model);
 	}
 	
@@ -313,7 +313,7 @@ public class BoardController {
 			// paging start
 			int bbsCount = boardService.selectTotalArticleCountByKeyword(keyword);
 			int totalPage = 0;
-			System.out.println(bbsCount);
+			//System.out.println(bbsCount);
 			if(bbsCount > 0) {
 				totalPage= (int)Math.ceil(bbsCount/10.0);
 			}
